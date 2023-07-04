@@ -1,0 +1,20 @@
+.calculadora {
+    margin-top: 20px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    width: 100px;
+    margin: 5px;
+}
+
+.botonIgual{
+    width: 215px;
+}
+
+/* .queOcupeElAncho{
+    height: 100%;
+} */
