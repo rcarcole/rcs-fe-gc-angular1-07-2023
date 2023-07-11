@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import * as math from 'mathjs';
-
 
 @Component({
   selector: 'app-root',
@@ -11,33 +9,66 @@ import * as math from 'mathjs';
 
 export class AppComponent {
   title = 'mi-nuevo-proyecto-angular';
-  //  El '!:' significa que la variable puede ser nula en un principio, pero se le asignará un valor en algún momento antes de ser utilizada.
-  result!: number; 
-  pantalla = document.querySelector('#pantalla');
+  result: number = 0;
+  pantalla: string = "";
 
   numero(number: number): void {
     // Lógica para manejar el número seleccionado
     console.log("Número seleccionado:", number);
-
+    this.pantalla += number;
   }
 
   operador(operador: string) {
     // Lógica para manejar los operadores
     console.log("Operador seleccionado:", operador);
+    this.pantalla += operador;
+  }
+
+  suma() {
+    let numeros = this.pantalla.split('+');
+    let resultado = parseFloat(numeros[0]) + parseFloat(numeros[1]);
+    this.pantalla = resultado.toString();
+  }
+
+  resta() {
+    // console.log(contenido)
+    let numeros = this.pantalla.split('-');
+    // console.log(numeros)
+    let resultado = parseFloat(numeros[0]) - parseFloat(numeros[1]);
+    // console.log(resultado)
+    this.pantalla = resultado.toString();
+  }
+
+  multiplicacion() {
+    let numeros = this.pantalla.split('*');
+    let resultado = parseFloat(numeros[0]) * parseFloat(numeros[1]);
+    this.pantalla = resultado.toString();
+  }
+
+  division() {
+    let numeros = this.pantalla.split('/');
+    let resultado = parseFloat(numeros[0]) / parseFloat(numeros[1]);
+    this.pantalla = resultado.toString();
   }
 
   calcular() {
     // Lógica para hacer los cálculos
-    try {
-      this.result = math.evaluate(this.result.toString());
-    } catch (error) {
-      console.error("Error en el cálculo:", error);
+    if (this.pantalla.includes('+')) {
+      this.suma();
+    }
+    if (this.pantalla.includes('-')) {
+      // console.log(this.pantalla);
+      this.resta();
+    }
+    if (this.pantalla.includes('*')) {
+      this.multiplicacion();
+    }
+    if (this.pantalla.includes('/')) {
+      this.division();
     }
   }
 
   borrar() {
-    this.result = 0;
+    this.pantalla = "";
   }
 }
-
-
